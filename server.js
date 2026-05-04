@@ -18,17 +18,16 @@ const NIM_API_KEY = process.env.NIM_API_KEY;
 const SHOW_REASONING = false; // Set to true to show reasoning with <think> tags
 
 // 🔥 THINKING MODE TOGGLE - Enables thinking for specific models that support it
-const ENABLE_THINKING_MODE = false; // Set to true to enable chat_template_kwargs thinking parameter
+const ENABLE_THINKING_MODE = true; // Set to true to enable chat_template_kwargs thinking parameter
 
 // Model mapping (adjust based on available NIM models)
 const MODEL_MAPPING = {
-  'gpt-3.5-turbo': 'nvidia/llama-3.1-nemotron-ultra-253b-v1',
-  'gpt-4': 'qwen/qwen3-coder-480b-a35b-instruct',
-  'gpt-4-turbo': 'moonshotai/kimi-k2-instruct-0905',
-  'gpt-4o': 'deepseek-ai/deepseek-v3.1',
-  'claude-3-opus': 'openai/gpt-oss-120b',
-  'claude-3-sonnet': 'openai/gpt-oss-20b',
-  'gemini-pro': 'qwen/qwen3-next-80b-a3b-thinking' 
+  'kimi-k2.6': 'moonshotai/kimi-k2.6',
+  'deepseek-v4-pro': 'deepseek-ai/deepseek-v4-pro',
+  'glm-5.1': 'z-ai/glm-5.1',
+  'glm-4.7': 'z-ai/glm-4.7',
+  'minimax-m2.7': 'minimaxai/minimax-m2.7',
+  'qwen-3.5': 'qwen/qwen3.5-122b-a10b',
 };
 
 // Health check endpoint
@@ -82,11 +81,11 @@ app.post('/v1/chat/completions', async (req, res) => {
       if (!nimModel) {
         const modelLower = model.toLowerCase();
         if (modelLower.includes('gpt-4') || modelLower.includes('claude-opus') || modelLower.includes('405b')) {
-          nimModel = 'meta/llama-3.1-405b-instruct';
+          nimModel = 'nvidia/nemotron-3-super-120b-a12b';
         } else if (modelLower.includes('claude') || modelLower.includes('gemini') || modelLower.includes('70b')) {
-          nimModel = 'meta/llama-3.1-70b-instruct';
+          nimModel = 'nvidia/nemotron-3-nano-omni-30b-a3b-reasoning';
         } else {
-          nimModel = 'meta/llama-3.1-8b-instruct';
+          nimModel = 'nvidia/nemotron-3-nano-30b-a3b';
         }
       }
     }
