@@ -22,12 +22,12 @@ const ENABLE_THINKING_MODE = true; // Set to true to enable chat_template_kwargs
 
 // Model mapping (adjust based on available NIM models)
 const MODEL_MAPPING = {
-  'kimi-k2.6': 'moonshotai/kimi-k2.6',
-  'deepseek-v4-pro': 'deepseek-ai/deepseek-v4-pro',
-  'glm-5.1': 'z-ai/glm-5.1',
-  'glm-4.7': 'z-ai/glm-4.7',
-  'minimax-m2.7': 'minimaxai/minimax-m2.7',
-  'qwen-3.5': 'qwen/qwen3.5-122b-a10b',
+  'gpt-3.5-turbo': 'moonshotai/kimi-k2.6',
+  'gpt-4-turbo': 'deepseek-ai/deepseek-v4-pro',
+  'gpt-4': 'z-ai/glm-5.1',
+  'gpt-4o': 'z-ai/glm-4.7',
+  'claude-3-opus': 'minimaxai/minimax-m2.7',
+  'claude-3-sonnet': 'qwen/qwen3.5-122b-a10b',
 };
 
 // Health check endpoint
@@ -80,9 +80,9 @@ app.post('/v1/chat/completions', async (req, res) => {
       
       if (!nimModel) {
         const modelLower = model.toLowerCase();
-        if (modelLower.includes('kimi-k2.6') || modelLower.includes('glm-5.1') || modelLower.includes('deepseek-v4-pro')) {
+        if (modelLower.includes('gpt-3.5-turbo') || modelLower.includes('gpt-4') || modelLower.includes('gpt-4-turbo')) {
           nimModel = 'nvidia/nemotron-3-super-120b-a12b';
-        } else if (modelLower.includes('glm-4.7') || modelLower.includes('minimax-m2.7') || modelLower.includes('qwen-3.5')) {
+        } else if (modelLower.includes('gpt-4o') || modelLower.includes('claude-3-opus') || modelLower.includes('claude-3-sonnet')) {
           nimModel = 'nvidia/nemotron-3-nano-omni-30b-a3b-reasoning';
         } else {
           nimModel = 'nvidia/nemotron-3-nano-30b-a3b';
