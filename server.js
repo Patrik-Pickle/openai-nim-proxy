@@ -80,9 +80,9 @@ app.post('/v1/chat/completions', async (req, res) => {
       
       if (!nimModel) {
         const modelLower = model.toLowerCase();
-        if (modelLower.includes('gpt-4') || modelLower.includes('claude-opus') || modelLower.includes('405b')) {
+        if (modelLower.includes('kimi-k2.6') || modelLower.includes('glm-5.1') || modelLower.includes('deepseek-v4-pro')) {
           nimModel = 'nvidia/nemotron-3-super-120b-a12b';
-        } else if (modelLower.includes('claude') || modelLower.includes('gemini') || modelLower.includes('70b')) {
+        } else if (modelLower.includes('glm-4.7') || modelLower.includes('minimax-m2.7') || modelLower.includes('qwen-3.5')) {
           nimModel = 'nvidia/nemotron-3-nano-omni-30b-a3b-reasoning';
         } else {
           nimModel = 'nvidia/nemotron-3-nano-30b-a3b';
